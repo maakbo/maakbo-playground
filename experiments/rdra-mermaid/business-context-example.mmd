@@ -1,0 +1,49 @@
+flowchart TB
+  %% Prefix Rules:
+  %% a_=actor, b_=business, bc_=business use case, ac_=activity, uc_=use case
+  %% i_=information, r_=requirement, v_=view, e_=event, t_=timer
+  %% st_=state, c_=condition, vr_=variation, s_=system, x_=external system
+  %% fr_=functional requirement, nfr_=non functional requirement
+  %%
+  %% Diagram Rules:
+  %% - Use flowchart TB.
+  %% - Use only undirected relationship lines.
+  %% - Use plain nodes for GitHub compatibility.
+  %% - Do not use frontmatter, image nodes, icons, ELK, or handDrawn in this file.
+  %% - Prefix means semantics. classDef means presentation.
+
+  a_customer["顧客"]
+  a_salesStaff["営業担当"]
+  b_order["受注業務"]
+  b_shipping["出荷業務"]
+  b_billing["請求業務"]
+  i_orderInfo["注文情報"]
+  i_inventoryInfo["在庫情報"]
+  i_invoiceInfo["請求情報"]
+  s_salesSystem["販売管理システム"]
+  x_deliveryCompany["配送会社"]
+
+  a_customer --- b_order
+  a_salesStaff --- b_order
+  b_order --- i_orderInfo
+  b_order --- s_salesSystem
+  s_salesSystem --- i_inventoryInfo
+  i_orderInfo --- b_shipping
+  i_inventoryInfo --- b_shipping
+  b_shipping --- x_deliveryCompany
+  b_shipping --- b_billing
+  b_billing --- i_invoiceInfo
+  i_invoiceInfo --- a_customer
+
+  classDef actor fill:#F7F5F2,stroke:#666666,color:#222222;
+  classDef business fill:#FFFFFF,stroke:#222222,color:#222222;
+  classDef information fill:#EEF5FF,stroke:#4A6FA5,color:#222222;
+  classDef requirement fill:#FFF7E6,stroke:#B7791F,color:#222222;
+  classDef system fill:#F0FFF4,stroke:#2F855A,color:#222222;
+  classDef external fill:#F7FAFC,stroke:#718096,color:#222222;
+
+  class a_customer,a_salesStaff actor;
+  class b_order,b_shipping,b_billing business;
+  class i_orderInfo,i_inventoryInfo,i_invoiceInfo information;
+  class s_salesSystem system;
+  class x_deliveryCompany external;
