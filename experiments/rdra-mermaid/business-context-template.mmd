@@ -1,0 +1,37 @@
+flowchart TB
+  %% Prefix Rules:
+  %% a_=actor, b_=business, bc_=business use case, ac_=activity, uc_=use case
+  %% i_=information, r_=requirement, v_=view, e_=event, t_=timer
+  %% st_=state, c_=condition, vr_=variation, s_=system, x_=external system
+  %% fr_=functional requirement, nfr_=non functional requirement
+  %%
+  %% Diagram Rules:
+  %% - Use flowchart TB.
+  %% - Use only undirected relationship lines.
+  %% - Use plain nodes for GitHub compatibility.
+  %% - Do not use frontmatter, image nodes, icons, ELK, or handDrawn in this file.
+  %% - Prefix means semantics. classDef means presentation.
+
+  a_actor["関係者"]
+  b_business["業務"]
+  i_information["情報"]
+  s_system["システム"]
+  x_externalSystem["外部システム"]
+
+  a_actor --- b_business
+  b_business --- i_information
+  b_business --- s_system
+  s_system --- x_externalSystem
+
+  classDef actor fill:#F7F5F2,stroke:#666666,color:#222222;
+  classDef business fill:#FFFFFF,stroke:#222222,color:#222222;
+  classDef information fill:#EEF5FF,stroke:#4A6FA5,color:#222222;
+  classDef requirement fill:#FFF7E6,stroke:#B7791F,color:#222222;
+  classDef system fill:#F0FFF4,stroke:#2F855A,color:#222222;
+  classDef external fill:#F7FAFC,stroke:#718096,color:#222222;
+
+  class a_actor actor;
+  class b_business business;
+  class i_information information;
+  class s_system system;
+  class x_externalSystem external;
