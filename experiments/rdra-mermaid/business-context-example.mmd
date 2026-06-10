@@ -1,0 +1,74 @@
+---
+title: RDRA Business Context Diagram - Order to Billing
+config:
+  layout: elk
+  look: handDrawn
+  theme: neutral
+  flowchart:
+    curve: basis
+    htmlLabels: false
+    nodeSpacing: 48
+    rankSpacing: 72
+    padding: 8
+  elk:
+    mergeEdges: false
+    nodePlacementStrategy: BRANDES_KOEPF
+  themeVariables:
+    background: "#F7F5F2"
+    lineColor: "#666666"
+    fontFamily: "Inter, Hiragino Sans, sans-serif"
+    fontSize: "14px"
+---
+
+flowchart TB
+  %% Prefix Rules:
+  %% a_=actor, b_=business, bc_=business use case, ac_=activity, uc_=use case
+  %% i_=information, r_=requirement, v_=view, e_=event, t_=timer
+  %% st_=state, c_=condition, vr_=variation, s_=system, x_=external system
+  %% fr_=functional requirement, nfr_=non functional requirement
+  %%
+  %% Icon Rules:
+  %% Use Iconify MDI URLs: https://api.iconify.design/mdi/{icon}.svg
+  %%
+  %% Diagram Rules:
+  %% - Use flowchart TB.
+  %% - Use only undirected relationship lines.
+  %% - Put labels at bottom with pos: "b".
+  %% - Keep image node properties on one line in this order: img, label, pos, w, h, constraint.
+  %% - Prefix means semantics. classDef means presentation.
+
+  a_customer@{ img: "https://api.iconify.design/mdi/person.svg", label: "顧客", pos: "b", w: 60, h: 60, constraint: "on" }
+  a_salesStaff@{ img: "https://api.iconify.design/mdi/account-tie.svg", label: "営業担当", pos: "b", w: 60, h: 60, constraint: "on" }
+  b_order@{ img: "https://api.iconify.design/mdi/work.svg", label: "受注業務", pos: "b", w: 60, h: 60, constraint: "on" }
+  b_shipping@{ img: "https://api.iconify.design/mdi/package-variant-closed.svg", label: "出荷業務", pos: "b", w: 60, h: 60, constraint: "on" }
+  b_billing@{ img: "https://api.iconify.design/mdi/receipt-text-check.svg", label: "請求業務", pos: "b", w: 60, h: 60, constraint: "on" }
+  i_orderInfo@{ img: "https://api.iconify.design/mdi/data.svg", label: "注文情報", pos: "b", w: 60, h: 60, constraint: "on" }
+  i_inventoryInfo@{ img: "https://api.iconify.design/mdi/database-search.svg", label: "在庫情報", pos: "b", w: 60, h: 60, constraint: "on" }
+  i_invoiceInfo@{ img: "https://api.iconify.design/mdi/file-document-outline.svg", label: "請求情報", pos: "b", w: 60, h: 60, constraint: "on" }
+  s_salesSystem@{ img: "https://api.iconify.design/mdi/server.svg", label: "販売管理システム", pos: "b", w: 60, h: 60, constraint: "on" }
+  x_deliveryCompany@{ img: "https://api.iconify.design/mdi/truck-delivery-outline.svg", label: "配送会社", pos: "b", w: 60, h: 60, constraint: "on" }
+
+  a_customer --- b_order
+  a_salesStaff --- b_order
+  b_order --- i_orderInfo
+  b_order --- s_salesSystem
+  s_salesSystem --- i_inventoryInfo
+  i_orderInfo --- b_shipping
+  i_inventoryInfo --- b_shipping
+  b_shipping --- x_deliveryCompany
+  b_shipping --- b_billing
+  b_billing --- i_invoiceInfo
+  i_invoiceInfo --- a_customer
+
+  classDef actor fill:none,stroke:none,color:#222222;
+  classDef business fill:none,stroke:none,color:#222222;
+  classDef information fill:none,stroke:none,color:#444444;
+  classDef requirement fill:none,stroke:none,color:#444444;
+  classDef system fill:none,stroke:none,color:#222222;
+  classDef external fill:none,stroke:none,color:#666666;
+
+  class a_customer,a_salesStaff actor;
+  class b_order,b_shipping,b_billing business;
+  class i_orderInfo,i_inventoryInfo,i_invoiceInfo information;
+  class s_salesSystem system;
+  class x_deliveryCompany external;
