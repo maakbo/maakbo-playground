@@ -39,6 +39,7 @@ experiments/
   codex/
   claude-code/
   ai-tools/
+  rdra-mermaid/
   experiment-log-template.md
 
 notes/
