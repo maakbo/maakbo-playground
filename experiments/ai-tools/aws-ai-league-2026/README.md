@@ -12,9 +12,11 @@
 4. [Copilotに渡す次アクションプロンプト](copilot-prompt.md)
 5. [残り3〜4時間用の短い実行プロンプト](copilot-roi-prompt.md)：単体で転記可能。棚卸し→Boss基準run→最大2個の改善→総コスト比較。
 
-Copilotへの短い依頼：
+6. [設計仮説 v1を3〜4時間で検証するプロンプト](copilot-v2-validation-prompt.md)：今回の依頼用。既存構成を保存し、v2を横に作成してBoss・総コストを比較。枠内だけで単体転記可能。
 
-> このフォルダの5つのMarkdownを読んでください。公開情報の適用範囲を守り、まず手元の本番設定と実行ログを照合し、experiments.mdのE0→E1から進めてください。外部リサーチは不要です。具体的な作業指示はcopilot-prompt.mdにあります。
+従来の調査資料を使う場合のCopilotへの短い依頼：
+
+> README.md、research.md、experiments.md、route-design.md、copilot-prompt.mdを読んでください。公開情報の適用範囲を守り、まず手元の本番設定と実行ログを照合し、experiments.mdのE0→E1から進めてください。外部リサーチは不要です。具体的な作業指示はcopilot-prompt.mdにあります。
 
 ## 証拠の読み方
 
@@ -33,3 +35,5 @@ Copilotへの短い依頼：
 - 既存の未コミット作業とは別のチェックアウトで、このフォルダと親READMEの案内だけを追加。
 
 - 2026-09-09：残り3〜4時間向けの単体転記プロンプトを追加。Memory/Guardrail構造を固定し、5分類の棚卸しと変更前後の比較に絞った。
+
+- 2026-09-09：設計仮説 v1の検証プロンプトを新規追加。旧資産の保持、v2の並置、baseline保存、接続切替とRollbackを明記。
